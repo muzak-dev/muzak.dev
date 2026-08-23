@@ -7,9 +7,18 @@ const props = withDefaults(
   { title: 'Muzak', description: '' },
 )
 
+// Truncation happens on a word boundary. Cutting at a fixed character count
+// left cards ending mid-word ("the request an..."), which reads as a rendering
+// fault rather than as an abbreviation.
+const LIMIT = 150
+
 const shortDescription = computed(() => {
-  const text = props.description ?? ''
-  return text.length > 150 ? `${text.slice(0, 147)}...` : text
+  const text = (props.description ?? '').trim()
+  if (text.length <= LIMIT) return text
+  const clipped = text.slice(0, LIMIT)
+  const lastSpace = clipped.lastIndexOf(' ')
+  const kept = lastSpace > 60 ? clipped.slice(0, lastSpace) : clipped
+  return `${kept.replace(/[,.;:]$/, '')}...`
 })
 </script>
 

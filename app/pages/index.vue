@@ -38,7 +38,14 @@ useHead({
 })
 
 // The social banner, generated from the Muzak OG template.
-defineOgImageComponent('Muzak', { title: site.title, description: site.description })
+// The card already carries the "Muzak" wordmark at the top and the tagline
+// along the bottom, so passing the full page title repeated both of them and
+// the card said the same thing three times. The hero's own headline is what is
+// actually distinctive about this page.
+defineOgImageComponent('Muzak', {
+  title: 'The signature is the contract.',
+  description: site.description,
+})
 
 // ── GEO / structured data: give engines clean, citable facts ──
 const ldSoftware = {
