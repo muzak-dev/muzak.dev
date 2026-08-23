@@ -58,8 +58,8 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
             style="animation-delay: 0.34s"
           >
             <span class="flex items-center gap-1.5"
-              ><span class="h-1.5 w-1.5 rounded-full bg-patina shadow-[0_0_8px_#6FB3A3]" /> stable
-              channel</span
+              ><span class="h-1.5 w-1.5 rounded-full bg-brass shadow-[0_0_8px_#C9A24B]" /> v0.1.0
+              &middot; pre-1.0</span
             >
             <span>Go <span class="text-ash">1.27</span></span>
             <span><span class="text-patina">0</span> dependencies</span>
