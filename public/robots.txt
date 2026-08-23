@@ -11,4 +11,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://torkframework.dev/sitemap.xml
+Sitemap: https://muzak.dev/sitemap.xml

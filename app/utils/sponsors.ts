@@ -1,9 +1,21 @@
-// Shared sponsor roster — used by the landing marquee and the docs rail.
+// Shared sponsor roster, used by the landing marquee and the docs rail.
+
+/**
+ * Whether the sponsor sections are rendered at all.
+ *
+ * Off for the first release: there are no sponsors yet, and a roster of
+ * placeholder names reads as a claim rather than as a placeholder. The roster
+ * and both layouts below are kept intact, so turning this back on is the whole
+ * change. It gates the landing marquee ("Backed and sponsored by") and the rail
+ * in the docs table of contents.
+ */
+export const SHOW_SPONSORS = false
+
 export interface Sponsor {
   n: string // name
   t: string // tier / role
   m: string // mark key (see SPONSOR_MARKS)
-  gold?: boolean // premium tier — gets the brass treatment
+  gold?: boolean // premium tier, gets the brass treatment
 }
 
 export const SPONSOR_MARKS: Record<string, string> = {

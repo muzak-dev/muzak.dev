@@ -15,22 +15,23 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
             class="rise mb-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-rust"
             style="animation-delay: 0.05s"
           >
-            <span class="h-px w-6 bg-rust2" /> The Tork toolchain · v0.8.2
+            <span class="h-px w-6 bg-rust2" /> Muzak for Go 1.27 · v0.1.0
           </p>
           <h1
             id="hero-title"
             class="rise text-[clamp(2.4rem,6.2vw,4.1rem)] font-semibold leading-[0.98] tracking-[-0.03em]"
             style="animation-delay: 0.1s"
           >
-            Torque,<br >applied to <span class="text-rust">types</span>.
+            The signature<br >is the <span class="text-rust">contract</span>.
           </h1>
           <p
             class="rise mt-6 max-w-md text-[14.5px] leading-relaxed text-ash"
             style="animation-delay: 0.18s"
           >
-            Tork is the async web framework for Rust — with a
-            <span class="text-bone">command line</span> and ORM built right in. Routes, queries, and
-            migrations are checked the moment your code compiles — never in production.
+            Muzak is the type-safe web framework for Go. A handler's
+            <span class="text-bone">input type is the request</span> and its
+            <span class="text-bone">return type is the response</span>, both checked when you
+            compile. Built on net/http, with no third-party dependencies at all.
           </p>
 
           <div
@@ -41,13 +42,13 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
               href="#install"
               class="group flex items-center gap-2 bg-rust px-4 py-2.5 font-mono text-[12px] font-semibold text-ink transition-colors hover:bg-[#f06436]"
             >
-              Install tork-cli
+              go get muzak.dev/framework
               <span class="transition-transform group-hover:translate-x-0.5">→</span>
             </a>
             <a
-              href="#orm"
+              href="#contract"
               class="border border-line2 px-4 py-2.5 font-mono text-[12px] text-ash transition-colors hover:border-rust2 hover:text-bone"
-              >See the ORM</a
+              >See a route</a
             >
           </div>
 
@@ -60,16 +61,16 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
               ><span class="h-1.5 w-1.5 rounded-full bg-patina shadow-[0_0_8px_#6FB3A3]" /> stable
               channel</span
             >
-            <span>MSRV <span class="text-ash">1.75</span></span>
-            <span>MIT / Apache-2.0</span>
-            <span><span class="text-patina">0</span> unsafe in core</span>
+            <span>Go <span class="text-ash">1.27</span></span>
+            <span><span class="text-patina">0</span> dependencies</span>
+            <span><span class="text-patina">98.7%</span> covered</span>
           </div>
         </div>
 
         <!-- right: live install terminal -->
         <div class="rise" style="animation-delay: 0.3s">
           <div
-            class="flex h-[273px] flex-col overflow-hidden border border-line bg-ink2 shadow-[0_30px_80px_-40px_rgba(0,0,0,.9)]"
+            class="flex h-[273px] flex-col overflow-hidden border border-line bg-ink2"
           >
             <div
               class="flex items-center justify-between shrink-0 border-b border-line bg-ink3 px-3.5 py-2 font-mono text-[11px]"
@@ -78,7 +79,7 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
                 <span class="h-2 w-2 rounded-full bg-rust2/80" />
                 <span class="h-2 w-2 rounded-full bg-line2" />
                 <span class="h-2 w-2 rounded-full bg-line2" />
-                <span class="ml-2">zsh — install</span>
+                <span class="ml-2">zsh · install</span>
               </div>
               <StatusDot :status="status" />
             </div>
@@ -86,13 +87,14 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
               term-key="install"
               :steps="TERMINAL_SCRIPTS.install"
               show-final-prompt
-              aria-label="Terminal installing tork-cli with cargo"
+              aria-label="Terminal installing muzak with go get and starting the server"
               class="text-[12.5px]"
               @status="status = $event"
             />
           </div>
           <p class="mt-3 pl-1 font-mono text-[11px] text-faint">
-            One binary, named <span class="text-ash">tork</span>. It scaffolds, runs, and migrates.
+            One module, named <span class="text-ash">muzak</span>. Routing, validation, DI and
+            OpenAPI are in it.
           </p>
         </div>
       </div>

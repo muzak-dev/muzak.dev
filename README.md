@@ -1,75 +1,52 @@
-# Nuxt Minimal Starter
+# Muzak Site
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+The landing page and documentation for the Muzak framework, built with Nuxt and
+`@nuxt/content`. It is one Nuxt app: the marketing page is served at `/` and the docs under
+`/docs`, so `muzak.dev` and `muzak.dev/docs/...` come from the same deployment.
+
+Documentation pages live under `content/docs/`. A folder directly under `docs/` is a menu
+group and a markdown file inside it is a page. Numeric filename prefixes (`1.`, `2.`)
+control sidebar ordering only and are stripped from the URL, so
+`content/docs/1.getting-started/3.routers.md` is served at
+`/docs/getting-started/routers`.
 
 ## Setup
 
-Make sure to install dependencies:
+This project uses [pnpm](https://pnpm.io). The version is pinned in `package.json` under
+`packageManager`, and `pnpm-workspace.yaml` allows the two dependencies that need to run a
+build script (`better-sqlite3` and `esbuild`).
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Development server
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+
+Serves the site on `http://localhost:3000`.
 
 ## Production
 
-Build the application for production:
+Build the application:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview the production build locally:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Generate a fully static site:
+
+```bash
+pnpm generate
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment)
+for more information.

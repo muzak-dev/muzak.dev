@@ -4,8 +4,9 @@ const navOpen = useState<boolean>('docsNavOpen')
 
 const { data: nav } = await useDocsNav()
 
-// Only show the groups of the active section (Framework / ORM).
-const groups = computed(() => sectionGroups(nav.value, activeSectionKey(route.path) ?? 'framework'))
+// Every menu group, in content order. Groups are the folders directly under
+// `content/docs/`, so the sidebar mirrors the tree with nothing in between.
+const groups = computed(() => docsGroups(nav.value))
 
 // Machine-readable docs (llmstxt.org), linked at the foot of every section.
 const llmLinks = [
@@ -54,7 +55,6 @@ watch(
     "
   >
     <div class="thin md:sticky md:top-16 md:max-h-[calc(100vh-5rem)] md:overflow-y-auto md:pr-1">
-      <DocsSectionTabs />
       <DocsVersionPicker />
       <nav class="space-y-1.5 border-t border-dashed border-line pt-3 text-[12.5px]" aria-label="Documentation">
         <details

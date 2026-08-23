@@ -27,16 +27,16 @@ const prev = computed(() => surround.value?.[0] ?? null)
 const next = computed(() => surround.value?.[1] ?? null)
 
 // ── SEO ──
-const site = 'https://torkframework.dev'
+const site = 'https://muzak.dev'
 useSeoMeta({
-  title: () => `${page.value?.title} — Tork docs`,
+  title: () => `${page.value?.title} · Muzak docs`,
   description: () => page.value?.description,
   ogType: 'article',
-  ogTitle: () => `${page.value?.title} — Tork docs`,
+  ogTitle: () => `${page.value?.title} · Muzak docs`,
   ogDescription: () => page.value?.description,
   ogUrl: () => `${site}${route.path}`,
   twitterCard: 'summary_large_image',
-  twitterTitle: () => `${page.value?.title} — Tork docs`,
+  twitterTitle: () => `${page.value?.title} · Muzak docs`,
   twitterDescription: () => page.value?.description,
   robots: 'index, follow',
 })
@@ -45,8 +45,8 @@ useHead({
   link: [{ rel: 'canonical', href: () => `${site}${route.path}` }],
 })
 
-// The social banner for this doc, generated from the Tork OG template.
-defineOgImageComponent('Tork', {
+// The social banner for this doc, generated from the Muzak OG template.
+defineOgImageComponent('Muzak', {
   title: page.value?.title,
   description: page.value?.description,
 })
@@ -64,8 +64,8 @@ useHead({
           description: page.value?.description,
           url: `${site}${route.path}`,
           inLanguage: 'en',
-          isPartOf: { '@type': 'WebSite', name: 'Tork', url: site },
-          author: { '@type': 'Organization', name: 'The Tork project' },
+          isPartOf: { '@type': 'WebSite', name: 'Muzak', url: site },
+          author: { '@type': 'Organization', name: 'The Muzak project' },
         }),
       ),
     },
@@ -81,7 +81,7 @@ useHead({
       </div>
 
       <!-- rendered markdown -->
-      <article id="main-doc" class="prose-tork">
+      <article id="main-doc" class="prose-muzak">
         <ContentRenderer v-if="page" :value="page" />
       </article>
 
@@ -116,8 +116,8 @@ useHead({
       <footer
         class="mt-10 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[11px] text-faint sm:flex-row sm:items-center sm:justify-between"
       >
-        <span>Tork is open source under MIT / Apache-2.0.</span>
-        <span>Built with iron and patience.</span>
+        <span>Open source under MIT / Apache-2.0 · sustained by the people who ship on it.</span>
+        <span>Built on net/http, and nothing else.</span>
       </footer>
   </main>
 </template>

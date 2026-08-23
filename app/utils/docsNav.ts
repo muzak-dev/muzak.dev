@@ -1,11 +1,12 @@
 import type { ContentNavigationItem } from '@nuxt/content'
 
-// Docs are split into top-level sections (folders directly under `docs/`):
-// `framework` and `orm`. Each section contains menu groups, each group its
-// pages. The sidebar tab switches the active section.
+// Docs navigation. A folder directly under `content/docs/` is a menu group and
+// a markdown file inside it is a page, so `1.getting-started/3.routers.md` is
+// served at `/docs/getting-started/routers`. Numeric prefixes order the sidebar
+// and are stripped from the URL.
 
 // `queryCollectionNavigation('docs')` may nest everything under a single
-// `/docs` wrapper — descend it so we always work with the section list.
+// `/docs` wrapper, so descend it and always work with the group list.
 function topLevel(
   nav: ContentNavigationItem[] | null | undefined,
 ): ContentNavigationItem[] {
@@ -16,24 +17,14 @@ function topLevel(
   return items
 }
 
-// Top-level sections (framework, orm) — folders that contain groups.
-export function docsSections(
+/** The menu groups, in sidebar order. */
+export function docsGroups(
   nav: ContentNavigationItem[] | null | undefined,
 ): ContentNavigationItem[] {
-  return topLevel(nav).filter((s) => (s.children?.length ?? 0) > 0)
+  return topLevel(nav).filter((g) => (g.children?.length ?? 0) > 0)
 }
 
-// The menu groups inside one section, e.g. sectionGroups(nav, 'framework').
-export function sectionGroups(
-  nav: ContentNavigationItem[] | null | undefined,
-  key: string | undefined,
-): ContentNavigationItem[] {
-  if (!key) return []
-  const section = docsSections(nav).find((s) => s.path === `/docs/${key}`)
-  return section?.children ?? []
-}
-
-// First actual page (a node with no children) under a list — depth first.
+// First actual page (a node with no children) under a list, depth first.
 function firstLeaf(items: ContentNavigationItem[] | undefined): string | undefined {
   for (const it of items ?? []) {
     if (it.children?.length) {
@@ -46,22 +37,9 @@ function firstLeaf(items: ContentNavigationItem[] | undefined): string | undefin
   return undefined
 }
 
-// First page in the whole docs tree — used to resolve a bare `/docs` visit.
+/** First page in the whole docs tree, used to resolve a bare `/docs` visit. */
 export function firstDocLeaf(
   nav: ContentNavigationItem[] | null | undefined,
 ): string | undefined {
   return firstLeaf(topLevel(nav))
-}
-
-// First page of a given section — where its tab navigates to.
-export function firstLeafOfSection(
-  nav: ContentNavigationItem[] | null | undefined,
-  key: string,
-): string | undefined {
-  return firstLeaf(sectionGroups(nav, key))
-}
-
-// The section a path belongs to: /docs/<section>/… → '<section>'.
-export function activeSectionKey(path: string): string | undefined {
-  return path.split('/').filter(Boolean)[1]
 }

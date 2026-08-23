@@ -11,7 +11,8 @@ import { FAQ } from '~/utils/faq'
           Questions, answered plainly
         </h2>
         <p class="mt-4 text-[14.5px] leading-relaxed text-ash">
-          The short version of what Tork is, how to install it, and what it costs you at runtime.
+          The short version of what Muzak is, how a route is written, and what it costs you at
+          runtime.
         </p>
       </div>
 

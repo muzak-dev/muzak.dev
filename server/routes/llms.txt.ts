@@ -1,4 +1,4 @@
-// `/llms.txt` — an index of the documentation for AI / generative engines,
+// `/llms.txt` - an index of the documentation for AI / generative engines,
 // in the llmstxt.org format (https://llmstxt.org). The full text lives at
 // `/llms-full.txt`. Generated from the docs content, prerendered.
 
@@ -6,20 +6,31 @@ export default defineEventHandler(async (event) => {
   const docs = await collectDocs()
 
   const lines: string[] = [
-    '# Tork',
+    '# Muzak',
     '',
-    '> Tork is an async web framework for Rust with a built-in CLI and ORM. ' +
-      'Routes, queries, and migrations are checked the moment you compile. ' +
-      'Install the CLI with `cargo install tork-cli`.',
+    '> Muzak is a type-safe web framework for Go, built on net/http and Go 1.27 ' +
+      'with no third-party dependencies. A handler is an ordinary typed function: ' +
+      'its input type is the request and its return type is the response body, ' +
+      'both checked at compile time. Routing, request binding, validation, ' +
+      'dependency injection, configuration, structured logging, WebSockets, ' +
+      'server-sent events, rate limiting and OpenAPI 3.1 generation are part of ' +
+      'the framework rather than separate modules. Install it with `go get muzak.dev/framework`.',
     '',
-    'The full text of every page is at https://torkframework.dev/llms-full.txt.',
+    'Every default is the conservative one: listener timeouts are non-zero, request ' +
+      'bodies are capped, unknown JSON members are rejected, CORS denies every ' +
+      'cross-origin request until a policy is written, a cross-origin WebSocket ' +
+      'handshake is refused, no forwarding header is believed until a proxy is ' +
+      'named, and a panic becomes a generic 500 with the stack recorded only in ' +
+      'the log.',
+    '',
+    `The full text of every page is at ${SITE_URL}/llms-full.txt.`,
     '',
   ]
 
-  const sections = [...new Set(docs.map((doc) => doc.section))]
-  for (const section of sections) {
-    lines.push(`## ${sectionLabel(section)}`, '')
-    for (const doc of docs.filter((doc) => doc.section === section)) {
+  const groups = [...new Set(docs.map((doc) => doc.group))]
+  for (const group of groups) {
+    lines.push(`## ${groupLabel(group)}`, '')
+    for (const doc of docs.filter((doc) => doc.group === group)) {
       const description = doc.description ? `: ${doc.description}` : ''
       lines.push(`- [${doc.title}](${doc.url})${description}`)
     }

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 // Docs version picker. Default = latest, shown as "0.1.0 - Latest".
 // The dropdown is a glassmorphism panel (see .version-popper in tailwind.css).
+//
+// `eager-mount` matters here. floating-vue only mounts the popper slot once the
+// dropdown is shown, so without it the glass panel is painted a frame before
+// the list inside it exists, and the background visibly arrives first.
 interface DocVersion {
   v: string
   label?: string
@@ -29,6 +33,7 @@ function pick(ver: DocVersion) {
     placement="bottom-start"
     popper-class="version-popper"
     class="mb-3 block"
+    eager-mount
   >
     <button
       type="button"

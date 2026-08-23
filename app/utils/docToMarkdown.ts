@@ -57,7 +57,7 @@ export function articleToMarkdown(root: HTMLElement): string {
     } else if (tag === 'HR') {
       out.push('---', '')
     } else {
-      // Unknown wrapper (e.g. the code-block div) — recurse into its children.
+      // Unknown wrapper (e.g. the code-block div): recurse into its children.
       Array.from(el.children).forEach((c) => block(c as HTMLElement))
     }
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SPONSORS, SPONSOR_MARKS } from '~/utils/sponsors'
+import { SPONSORS, SPONSOR_MARKS, SHOW_SPONSORS } from '~/utils/sponsors'
 
 interface TocLink {
   id: string
@@ -124,15 +124,19 @@ onBeforeUnmount(() => {
         </ul>
       </template>
 
-      <!-- sponsors -->
-      <section :class="flat.length ? 'mt-8 border-t border-line pt-6' : ''" aria-label="Sponsors">
+      <!-- Off for the first release; see SHOW_SPONSORS in utils/sponsors.ts. -->
+      <section
+        v-if="SHOW_SPONSORS"
+        :class="flat.length ? 'mt-8 border-t border-line pt-6' : ''"
+        aria-label="Sponsors"
+      >
         <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Sponsors</p>
         <div class="grid grid-cols-2 gap-2">
           <a
             v-for="s in sortedSponsors"
             :key="s.n"
             href="/#sponsors"
-            :title="`${s.n} — ${s.t}`"
+            :title="`${s.n} · ${s.t}`"
             class="group flex flex-col items-center gap-1.5 border p-2.5 text-center transition-colors"
             :class="
               s.gold

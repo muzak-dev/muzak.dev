@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { FAQ } from '~/utils/faq'
+import { SHOW_SPONSORS } from '~/utils/sponsors'
 
 const site = {
-  url: 'https://torkframework.dev',
-  name: 'Tork',
-  title: 'Tork — The async web framework for Rust',
+  url: 'https://muzak.dev',
+  name: 'Muzak',
+  title: 'Muzak · The type-safe web framework for Go',
   description:
-    'Tork is an async web framework for Rust with a built-in CLI and ORM — routes, queries, and migrations checked the moment you compile. Install with cargo install tork-cli.',
+    "Muzak is a type-safe web framework for Go, built on net/http and Go 1.27 with no third-party dependencies. A handler's input type is the request and its return type is the response, both checked when you compile. Install with go get muzak.dev/framework.",
 }
 
 // ── Classic SEO: title, description, Open Graph, Twitter, canonical ──
@@ -16,8 +17,8 @@ useSeoMeta({
   title: site.title,
   description: site.description,
   keywords:
-    'Tork, Rust web framework, async Rust, Rust ORM, tork-cli, tork-orm, Rust migrations, compile-time checked queries, Tokio web framework',
-  author: 'The Tork project',
+    'Muzak, Go web framework, type-safe Go API, Go generics router, Go OpenAPI generation, Go request validation, Go dependency injection, net/http framework, Go 1.27',
+  author: 'The Muzak project',
   ogType: 'website',
   ogSiteName: site.name,
   ogTitle: site.title,
@@ -27,7 +28,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterTitle: site.title,
   twitterDescription: site.description,
-  twitterSite: '@tork_rs',
   robots: 'index, follow, max-image-preview:large, max-snippet:-1',
   themeColor: '#0E0C0A',
 })
@@ -37,33 +37,31 @@ useHead({
   link: [{ rel: 'canonical', href: site.url }],
 })
 
-// The social banner, generated from the Tork OG template.
-defineOgImageComponent('Tork', { title: site.title, description: site.description })
+// The social banner, generated from the Muzak OG template.
+defineOgImageComponent('Muzak', { title: site.title, description: site.description })
 
 // ── GEO / structured data: give engines clean, citable facts ──
 const ldSoftware = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Tork',
-  alternateName: 'tork-cli',
+  name: 'Muzak',
   applicationCategory: 'DeveloperApplication',
-  applicationSubCategory: 'Web Framework, ORM, CLI',
+  applicationSubCategory: 'Web Framework',
   operatingSystem: 'Linux, macOS, Windows',
   description: site.description,
   url: site.url,
-  softwareVersion: '0.8.2',
-  programmingLanguage: 'Rust',
-  downloadUrl: 'https://crates.io/crates/tork-cli',
+  softwareVersion: '0.1.0',
+  programmingLanguage: 'Go',
+  runtimePlatform: 'Go 1.27',
+  downloadUrl: 'https://github.com/muzak-dev/framework',
   license: 'https://opensource.org/license/mit',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    ratingCount: '128',
-  },
+  // No aggregateRating here on purpose: there are no ratings to aggregate, and
+  // review markup for reviews that do not exist is the kind of structured data
+  // search engines penalise rather than reward.
   author: {
     '@type': 'Organization',
-    name: 'The Tork project',
+    name: 'The Muzak project',
     url: site.url,
   },
 }
@@ -84,7 +82,7 @@ const ldBreadcrumb = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
     { '@type': 'ListItem', position: 2, name: 'Install', item: `${site.url}#install` },
-    { '@type': 'ListItem', position: 3, name: 'ORM', item: `${site.url}#orm` },
+    { '@type': 'ListItem', position: 3, name: 'Contract', item: `${site.url}#contract` },
     { '@type': 'ListItem', position: 4, name: 'Benchmarks', item: `${site.url}#bench` },
     { '@type': 'ListItem', position: 5, name: 'FAQ', item: `${site.url}#faq` },
   ],
@@ -112,10 +110,11 @@ useHead({
   <main id="top" class="relative z-10">
     <HeroSection />
     <InstallSection />
-    <OrmSection />
+    <ContractSection />
     <BenchmarksSection />
     <FaqSection />
-    <SponsorsSection />
+    <!-- Off for the first release; see SHOW_SPONSORS in utils/sponsors.ts. -->
+    <SponsorsSection v-if="SHOW_SPONSORS" />
     <CtaSection />
   </main>
 </template>

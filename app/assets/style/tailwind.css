@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────
-   Tork design tokens — Tailwind v4 theme
+   Muzak design tokens, Tailwind v4 theme
    Material world: iron · rust · brass · patina
    ───────────────────────────────────────────────────────────── */
 @theme {
@@ -114,7 +114,7 @@
 .c-rust { color: #e2562a; }
 .c-brass { color: #c9a24b; }
 
-/* ── floating navbar — transparent at rest, glass on scroll ── */
+/* ── floating navbar, transparent at rest, glass on scroll ── */
 #navbar {
   max-width: 1300px;
   height: 58px;
@@ -212,6 +212,42 @@
   border-color: rgba(20, 18, 16, 1);
 }
 
+/* Opening motion.
+
+   A backdrop-filter panel that fades in from zero opacity looks wrong: the
+   blurred background is composited at full strength while the contents are
+   still translucent, so the frame reads as an empty pane that fills in
+   afterwards. The components mount their content eagerly, and the panel then
+   arrives as one piece: the wrapper's own fade is cut short, and the movement
+   happens on the panel itself. */
+.v-popper__popper.version-popper.v-popper__popper--shown,
+.v-popper__popper.page-actions-popper.v-popper__popper--shown {
+  transition: opacity 0.08s linear;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .v-popper__popper.version-popper.v-popper__popper--shown .v-popper__inner,
+  .v-popper__popper.page-actions-popper.v-popper__popper--shown .v-popper__inner {
+    animation: popper-in 0.16s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform-origin: var(--popper-origin, top center);
+  }
+  .v-popper__popper.version-popper[data-popper-placement^='bottom'] .v-popper__inner {
+    --popper-origin: top center;
+  }
+  .v-popper__popper.version-popper[data-popper-placement^='top'] .v-popper__inner {
+    --popper-origin: bottom center;
+  }
+  @keyframes popper-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
 /* ── docs sidebar accordion ────────────────────────────────── */
 .navgroup > summary {
   cursor: pointer;
@@ -253,15 +289,15 @@
 }
 
 /* ── rendered markdown (docs body) ─────────────────────────── */
-.prose-tork {
+.prose-muzak {
   color: #958e82;
   font-size: 14px;
   line-height: 1.75;
 }
-.prose-tork > :first-child {
+.prose-muzak > :first-child {
   margin-top: 0;
 }
-.prose-tork h1 {
+.prose-muzak h1 {
   color: #e9e4da;
   font-size: clamp(2rem, 5vw, 2.85rem);
   font-weight: 600;
@@ -270,7 +306,7 @@
   margin: 0 0 1.25rem;
   scroll-margin-top: 5rem;
 }
-.prose-tork h2 {
+.prose-muzak h2 {
   color: #e9e4da;
   font-size: 20px;
   font-weight: 600;
@@ -280,14 +316,14 @@
   border-top: 1px solid #272320;
   scroll-margin-top: 5rem;
 }
-.prose-tork h3 {
+.prose-muzak h3 {
   color: #e9e4da;
   font-size: 15.5px;
   font-weight: 600;
   margin: 2rem 0 0.6rem;
   scroll-margin-top: 5rem;
 }
-.prose-tork h4 {
+.prose-muzak h4 {
   color: #c9c2b6;
   font-size: 13.5px;
   font-weight: 600;
@@ -296,61 +332,61 @@
   font-family: var(--font-mono);
   margin: 1.6rem 0 0.5rem;
 }
-.prose-tork p {
+.prose-muzak p {
   margin: 0 0 1rem;
   max-width: 42rem;
 }
-.prose-tork a {
+.prose-muzak a {
   color: #e9e4da;
   text-decoration: none;
   border-bottom: 0;
   transition: color 0.2s;
 }
-.prose-tork a:hover {
+.prose-muzak a:hover {
   color: #e2562a;
 }
-.prose-tork strong {
+.prose-muzak strong {
   color: #e9e4da;
   font-weight: 600;
 }
-.prose-tork em {
+.prose-muzak em {
   color: #c9c2b6;
 }
-.prose-tork ul,
-.prose-tork ol {
+.prose-muzak ul,
+.prose-muzak ol {
   margin: 0 0 1rem;
   padding-left: 1.25rem;
   max-width: 42rem;
 }
-.prose-tork ul {
+.prose-muzak ul {
   list-style: none;
   padding-left: 0;
 }
-.prose-tork ul > li {
+.prose-muzak ul > li {
   position: relative;
   padding-left: 1.25rem;
   margin: 0.4rem 0;
 }
-.prose-tork ul > li::before {
+.prose-muzak ul > li::before {
   content: '›';
   position: absolute;
   left: 0;
   color: #6fb3a3;
 }
-.prose-tork ol {
+.prose-muzak ol {
   list-style: decimal;
 }
-.prose-tork ol > li {
+.prose-muzak ol > li {
   margin: 0.4rem 0;
   padding-left: 0.35rem;
 }
-.prose-tork ol > li::marker {
+.prose-muzak ol > li::marker {
   color: #6a645b;
   font-family: var(--font-mono);
   font-size: 12px;
 }
 /* inline code */
-.prose-tork :not(pre) > code {
+.prose-muzak :not(pre) > code {
   font-family: var(--font-mono);
   font-size: 0.86em;
   color: #e9e4da;
@@ -360,7 +396,7 @@
   padding: 0.1em 0.4em;
 }
 /* fenced code blocks (Shiki) */
-.prose-tork pre {
+.prose-muzak pre {
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.7;
@@ -371,7 +407,7 @@
   margin: 0 0 1.25rem;
   overflow-x: auto;
 }
-.prose-tork pre code {
+.prose-muzak pre code {
   background: none;
   border: 0;
   padding: 0;
@@ -379,7 +415,7 @@
   color: inherit;
 }
 /* blockquote rendered as a greenish dashed alert (no left indicator) */
-.prose-tork blockquote {
+.prose-muzak blockquote {
   margin: 0 0 1.25rem;
   padding: 0.85rem 1.05rem;
   border: 1px dashed rgba(111, 179, 163, 0.42);
@@ -388,45 +424,45 @@
   color: #a9c8bc;
   font-size: 13.5px;
 }
-.prose-tork blockquote p {
+.prose-muzak blockquote p {
   margin: 0;
 }
-.prose-tork blockquote strong {
+.prose-muzak blockquote strong {
   color: #e6fff6;
 }
-.prose-tork blockquote a {
+.prose-muzak blockquote a {
   color: #8fd9c4;
 }
-.prose-tork blockquote :not(pre) > code {
+.prose-muzak blockquote :not(pre) > code {
   color: #e6fff6;
   background: rgba(111, 179, 163, 0.14);
   border-color: rgba(111, 179, 163, 0.3);
 }
-.prose-tork hr {
+.prose-muzak hr {
   border: 0;
   border-top: 1px solid #272320;
   margin: 2.5rem 0;
 }
-.prose-tork table {
+.prose-muzak table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono);
   font-size: 12.5px;
   margin: 0 0 1.25rem;
 }
-.prose-tork th {
+.prose-muzak th {
   text-align: left;
   color: #e9e4da;
   font-weight: 600;
   border-bottom: 1px solid #36302a;
   padding: 0.5rem 0.75rem;
 }
-.prose-tork td {
+.prose-muzak td {
   color: #958e82;
   border-bottom: 1px solid #272320;
   padding: 0.5rem 0.75rem;
 }
-.prose-tork img {
+.prose-muzak img {
   max-width: 100%;
   border-radius: 0;
   border: 1px solid #272320;

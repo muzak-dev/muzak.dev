@@ -9,19 +9,19 @@ import { promises as fs, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
 /** The canonical site origin, used to build absolute URLs. */
-export const SITE_URL = 'https://torkframework.dev'
+export const SITE_URL = 'https://muzak.dev'
 
 export interface DocEntry {
   /** Absolute path to the markdown file. */
   file: string
-  /** Site path, e.g. `/docs/framework/techniques/redis`. */
+  /** Site path, e.g. `/docs/techniques/rate-limiting`. */
   path: string
   /** Absolute URL. */
   url: string
-  /** Top-level section: `framework` or `orm`. */
-  section: string
   /** Menu group, e.g. `techniques`. */
   group: string
+  /** Page slug within the group, e.g. `rate-limiting`. */
+  slug: string
   title: string
   description: string
   /** Markdown body with the frontmatter block removed. */
@@ -125,8 +125,8 @@ export async function collectDocs(): Promise<DocEntry[]> {
       file,
       path,
       url: `${SITE_URL}${path}`,
-      section: slug[0] ?? '',
-      group: slug[1] ?? '',
+      group: slug[0] ?? '',
+      slug: slug[1] ?? '',
       lastModified: lastModifiedOf(file),
       ...parsed,
     })
@@ -149,9 +149,25 @@ export async function collectDocs(): Promise<DocEntry[]> {
   return entries
 }
 
-/** Human label for a top-level section. */
-export function sectionLabel(section: string): string {
-  if (section === 'framework') return 'Framework'
-  if (section === 'orm') return 'ORM'
-  return section.charAt(0).toUpperCase() + section.slice(1)
+/**
+ * Human label for a menu group, used as the heading in `llms.txt`.
+ *
+ * The groups are the folders directly under `content/docs/`, so the labels here
+ * have to match what the sidebar shows: `1.getting-started` reaches this as
+ * `getting-started`.
+ */
+export function groupLabel(group: string): string {
+  const named: Record<string, string> = {
+    'getting-started': 'Getting Started',
+    fundamentals: 'Fundamentals',
+    techniques: 'Techniques',
+    realtime: 'Real-time',
+    security: 'Security',
+    deployment: 'Deployment',
+  }
+  if (named[group]) return named[group]
+  return group
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 }

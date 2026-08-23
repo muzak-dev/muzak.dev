@@ -24,7 +24,7 @@ function escapeHtml(s: string) {
     .replace(/>/g, '&gt;')
 }
 
-// Fully-rendered representation of a step — also the SSR / no-JS state so the
+// Fully-rendered representation of a step, and also the SSR / no-JS state so the
 // content is present in the DOM for crawlers and AI engines.
 function staticLine(s: TermStep): Line {
   if (s.cmd)

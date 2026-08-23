@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const copied = ref(false)
-const cmd = 'cargo install tork-cli'
+const cmd = 'go get muzak.dev/framework'
 
 async function copy() {
   try {
@@ -8,7 +8,7 @@ async function copy() {
     copied.value = true
     setTimeout(() => (copied.value = false), 1400)
   } catch {
-    /* clipboard unavailable — no-op */
+    /* clipboard unavailable, no-op */
   }
 }
 </script>
@@ -21,7 +21,7 @@ async function copy() {
         id="cta-title"
         class="reveal mx-auto max-w-2xl text-[clamp(1.9rem,4vw,2.8rem)] font-semibold leading-[1.04] tracking-[-0.02em]"
       >
-        Stop catching errors in production.<br ><span class="text-ash">Start catching them at</span>
+        Stop finding contract bugs in production.<br ><span class="text-ash">Start finding them at</span>
         <span class="text-rust">compile time</span>.
       </h2>
       <div
@@ -47,7 +47,7 @@ async function copy() {
           >Read the docs →</a
         >
         <a
-          href="https://github.com/tork-rs/tork"
+          href="https://github.com/muzak-dev/framework"
           rel="noopener"
           class="border border-line2 px-5 py-2.5 font-mono text-[12px] text-ash transition-colors hover:border-rust2 hover:text-bone"
           >Star on GitHub</a

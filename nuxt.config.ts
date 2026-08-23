@@ -5,15 +5,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/style/tailwind.css'],
 
-  // SSR on (default) so all copy + structured data ships in the HTML —
-  // essential for both classic crawlers and AI / generative engines.
+  // SSR on (default) so all copy and structured data ships in the HTML,
+  // which is what both classic crawlers and AI / generative engines read.
   ssr: true,
   plugins: ['~/plugins/floating.ts'],
 
   // Canonical origin, used by the OG image module and the SEO meta.
   site: {
-    url: 'https://torkframework.dev',
-    name: 'Tork',
+    url: 'https://muzak.dev',
+    name: 'Muzak',
   },
 
   // The sitemap and the llms.txt / llms-full.txt GEO artifacts are server
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Tork — The async web framework for Rust',
+      title: 'Muzak · The type-safe web framework for Go',
       titleTemplate: '%s',
       meta: [
         { charset: 'utf-8' },
@@ -55,13 +55,14 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/content',
     '@atoms-studio/nuxt-swiftsearch',
-    // Generates a 1200x630 social banner per page from the Tork OG template,
+    // Generates a 1200x630 social banner per page from the Muzak OG template,
     // so the home page and every doc get a real Open Graph / Twitter card.
     'nuxt-og-image',
   ],
 
-  // Syntax highlighting for markdown code fences — a dark theme that sits in
-  // the iron/rust palette, plus the languages used across the docs.
+  // Syntax highlighting for markdown code fences: a dark theme that sits in
+  // the iron/rust palette, plus every language the docs actually use. `go` is
+  // the one that matters; leaving it out renders 345 code blocks unhighlighted.
   content: {
     build: {
       markdown: {
@@ -69,7 +70,7 @@ export default defineNuxtConfig({
           theme: {
             default: 'github-dark-default',
           },
-          langs: ['rust', 'bash', 'shell', 'toml', 'json', 'yaml', 'sql', 'ts', 'rust'],
+          langs: ['go', 'bash', 'shell', 'json', 'yaml', 'dockerfile', 'js', 'python', 'ts'],
         },
       },
     },

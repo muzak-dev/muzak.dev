@@ -6,14 +6,16 @@
       <div class="flex items-center gap-2">
         <img
           src="/logo.png"
-          alt="Tork fox logo"
+          alt="Muzak logo"
           width="20"
           height="20"
           class="h-5 w-5 shrink-0 object-contain"
         >
-        <span class="text-ash">tork</span><span class="text-line2">·</span><span>v0.8.2</span>
+        <span class="text-ash">muzak</span><span class="text-line2">·</span><span>v0.1.0</span>
       </div>
-      <span>Built with iron and patience.</span>
+      <!-- This line used to close the sponsors section, which is off for the
+           first release. It belongs on every page anyway. -->
+      <span>Open source under MIT / Apache-2.0 · sustained by the people who ship on it.</span>
     </div>
   </footer>
 </template>

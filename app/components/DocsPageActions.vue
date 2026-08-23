@@ -5,7 +5,7 @@ const props = defineProps<{ title?: string }>()
 const route = useRoute()
 
 const copied = ref(false)
-const pageUrl = computed(() => `https://torkframework.dev${route.path}`)
+const pageUrl = computed(() => `https://muzak.dev${route.path}`)
 // The raw Markdown source of this page, served by the docs-markdown middleware.
 const markdownUrl = computed(() => `${route.path}.md`)
 
@@ -37,7 +37,7 @@ function viewAsMarkdown() {
 }
 
 function openInAI(target: 'claude' | 'chatgpt') {
-  const prompt = `Read ${pageUrl.value} — the Tork documentation page "${props.title ?? ''}". I'd like to ask questions about it.`
+  const prompt = `Read ${pageUrl.value}, the Muzak documentation page "${props.title ?? ''}". I'd like to ask questions about it.`
   const q = encodeURIComponent(prompt)
   const url =
     target === 'claude' ? `https://claude.ai/new?q=${q}` : `https://chatgpt.com/?q=${q}`
@@ -66,7 +66,15 @@ const menu = [
     </button>
 
     <!-- secondary: more actions dropdown -->
-    <VDropdown :distance="6" placement="bottom-end" popper-class="page-actions-popper" class="flex">
+    <!-- eager-mount so the glass panel is never painted before its contents;
+         see the note in DocsVersionPicker. -->
+    <VDropdown
+      :distance="6"
+      placement="bottom-end"
+      popper-class="page-actions-popper"
+      class="flex"
+      eager-mount
+    >
       <button
         type="button"
         class="grid h-8 cursor-pointer place-items-center border border-white/5 bg-white/[0.02] px-2 text-faint transition-colors hover:bg-ink3 hover:text-bone"

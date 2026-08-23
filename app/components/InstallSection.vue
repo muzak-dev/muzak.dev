@@ -2,11 +2,11 @@
 import { TERMINAL_SCRIPTS, LIFECYCLE_ORDER } from '~/utils/terminalScripts'
 
 const lifecycle = [
-  { index: '01', title: 'migrate init', key: 'm1' },
-  { index: '02', title: 'migrate create', key: 'm2' },
-  { index: '03', title: 'migrate up', key: 'm3' },
-  { index: '04', title: 'migrate status', key: 'm4' },
-  { index: '05', title: 'migrate down', key: 'm5' },
+  { index: '01', title: 'start', key: 'm1' },
+  { index: '02', title: 'answer', key: 'm2' },
+  { index: '03', title: 'refuse', key: 'm3' },
+  { index: '04', title: 'describe', key: 'm4' },
+  { index: '05', title: 'drain', key: 'm5' },
 ]
 </script>
 
@@ -19,35 +19,36 @@ const lifecycle = [
           id="install-title"
           class="text-[clamp(1.7rem,3.2vw,2.3rem)] font-semibold tracking-[-0.02em]"
         >
-          Forge a project in five commands
+          One module, then a running API
         </h2>
         <p class="mt-4 text-[14.5px] leading-relaxed text-ash">
-          Install once with cargo, scaffold a service, then drive the schema with
-          <span class="font-mono text-[12.5px] text-bone">tork-orm</span>. Each card below plays the
-          real command and its output — watch the migration lifecycle run start to finish.
+          Add the module, lay the project out so
+          <span class="font-mono text-[12.5px] text-bone">cmd/main.go</span> does nothing but
+          compose, and run it. Each card below plays a real command and the output Muzak actually
+          prints, from the first request to a graceful shutdown.
         </p>
       </div>
 
-      <!-- install + scaffold -->
+      <!-- install + layout -->
       <div class="mt-9 grid grid-cols-1 gap-5 lg:grid-cols-2">
         <ReplayTerminalCard
           tag="install"
-          subtitle="crates.io"
-          term-key="cargo"
-          :steps="TERMINAL_SCRIPTS.cargo"
+          subtitle="go get"
+          term-key="get"
+          :steps="TERMINAL_SCRIPTS.get"
         />
         <ReplayTerminalCard
-          tag="scaffold"
-          subtitle="tork new"
-          term-key="new"
-          :steps="TERMINAL_SCRIPTS.new"
+          tag="layout"
+          subtitle="cmd/main.go"
+          term-key="layout"
+          :steps="TERMINAL_SCRIPTS.layout"
         />
       </div>
 
-      <!-- migration lifecycle -->
+      <!-- application lifecycle -->
       <div class="reveal mt-12 mb-5 flex items-center gap-4">
         <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-faint"
-          >The migration lifecycle</span
+          >The application lifecycle</span
         >
         <span class="h-px flex-1 bg-line" />
       </div>
@@ -68,13 +69,12 @@ const lifecycle = [
           class="reveal flex h-[126px] flex-col justify-center border border-line2/60 bg-ink2/60 px-4 py-3"
         >
           <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-patina"
-            >› reversible by design</span
+            >› safe by default</span
           >
           <p class="mt-2 text-[12px] leading-relaxed text-ash">
-            Every migration ships an <span class="text-bone">up</span> and a
-            <span class="text-bone">down</span>. State lives in
-            <span class="font-mono text-[11px] text-bone">_tork_migrations</span>, so
-            <span class="font-mono text-[11px] text-bone">status</span> never lies.
+            Timeouts are non-zero, bodies are capped, unknown JSON members are
+            <span class="text-bone">rejected</span>, and CORS denies everything until a policy is
+            written. Relaxing any of it is a decision you make out loud.
           </p>
         </div>
       </div>
