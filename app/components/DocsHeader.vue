@@ -5,6 +5,7 @@ const navOpen = useState<boolean>('docsNavOpen')
 // Same repository link and star count as the landing header. The shared fetch
 // key means both headers cost one request between them.
 const repo = 'https://github.com/muzak-dev/framework'
+const discord = 'https://discord.gg/z3UzJdGQD6'
 const { data: github } = await useGithubStars()
 const stars = computed(() => (github.value?.stars == null ? null : formatCount(github.value.stars)))
 </script>
@@ -26,14 +27,22 @@ const stars = computed(() => (github.value?.stars == null ? null : formatCount(g
       </NuxtLink>
 
       <div class="ml-auto flex items-center gap-3 font-mono text-[11px]">
-        <span class="hidden items-center gap-1.5 text-ash sm:flex">
-          <span class="h-1.5 w-1.5 rounded-full bg-patina shadow-[0_0_8px_#6FB3A3]" /> stable
-        </span>
         <span class="flex h-7 items-center px-2 text-ash">v0.1.0</span>
+
+        <a
+          :href="discord"
+          rel="noopener"
+          target="_blank"
+          aria-label="Discord"
+          class="flex h-7 items-center px-2 text-ash transition-colors hover:bg-white/[0.08] hover:text-bone"
+        >
+          <Icon name="lineicons:discord" size="14" aria-hidden="true" />
+        </a>
 
         <a
           :href="repo"
           rel="noopener"
+          target="_blank"
           :aria-label="stars ? `GitHub, ${stars} stars` : 'GitHub'"
           class="flex h-7 items-center gap-1.5 px-2 text-ash transition-colors hover:bg-white/[0.08] hover:text-bone"
         >

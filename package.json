@@ -25,6 +25,7 @@
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
+    "@iconify-json/lineicons": "^1.2.6",
     "@iconify-json/lucide": "^1.2.112",
     "@iconify-json/simple-icons": "^1.2.86"
   }
