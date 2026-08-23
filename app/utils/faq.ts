@@ -26,7 +26,7 @@ export const FAQ: FaqItem[] = [
   },
   {
     q: 'Does Muzak generate API documentation?',
-    a: 'Yes. An OpenAPI 3.1 document is served at /openapi.json and a self-contained documentation page at /docs, both derived from the routes, the input and output types and the validation rules. The page is embedded in the binary, fetches nothing from a third party, and runs under a strict content security policy.',
+    a: 'Yes. An OpenAPI 3.1 document is served at /openapi.json and a self-contained reference at /docs, both derived from the routes, the input and output types and the validation rules. The page is embedded in the binary and fetches nothing from a third party, and it carries a console: fill in an operation, send it, and read the status, headers and body without leaving the page, or copy the same request as curl. Both are announced with their URLs when the server starts.',
   },
   {
     q: 'Does it support WebSockets and server-sent events?',
