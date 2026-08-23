@@ -1,0 +1,36 @@
+# Netlify deployment for muzak.dev.
+#
+# This site has to be deployed as a server, not as a static export. Three things
+# depend on it:
+#
+#   - /framework?go-get=1 serves the go-import meta tag that makes the module
+#     path muzak.dev/framework resolve. Without a server this route does not
+#     exist, and `go get` fails for everyone.
+#   - /api/stars fetches and caches the GitHub star count.
+#   - The docs render on demand rather than being frozen at build time.
+#
+# `nuxt build` with the netlify preset writes static assets to dist/ and the
+# server to .netlify/functions-internal/server, which Netlify picks up as an
+# internal function.
+
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Nitro infers this from Netlify's own environment, but naming it means a
+  # local `pnpm build` produces exactly what a deploy produces.
+  NITRO_PRESET = "netlify"
+
+# Everything the static directory cannot answer goes to the server.
+#
+# Netlify checks for a matching static file before applying a rewrite, so
+# assets, the prerendered llms.txt, llms-full.txt and sitemap.xml are all served
+# straight from dist/ and only the rest reaches the function. Nitro leaves this
+# rule to Netlify's framework detection; writing it down means the deploy does
+# not depend on that detection working.
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
