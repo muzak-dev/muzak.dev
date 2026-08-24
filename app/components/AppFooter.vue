@@ -11,7 +11,7 @@
           height="20"
           class="h-5 w-5 shrink-0 object-contain"
         >
-        <span class="text-ash">muzak</span><span class="text-line2">·</span><span>v0.2.0</span>
+        <span class="text-ash">muzak</span><span class="text-line2">·</span><span>v0.2.1</span>
       </div>
       <!-- This line used to close the sponsors section, which is off for the
            first release. It belongs on every page anyway. -->
