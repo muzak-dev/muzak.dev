@@ -1,18 +1,24 @@
 <script setup lang="ts">
+import { docsPath } from '#shared/docsVersions'
+
 const route = useRoute()
 const navOpen = useState<boolean>('docsNavOpen')
 
 const { data: nav } = await useDocsNav()
 
-// Every menu group, in content order. Groups are the folders directly under
-// `content/docs/`, so the sidebar mirrors the tree with nothing in between.
-const groups = computed(() => docsGroups(nav.value))
+// Every menu group of the version being read, in content order. Groups are the
+// folders directly under `content/docs/<version>/`, so the sidebar mirrors the
+// tree with nothing in between.
+const version = useDocsVersion()
+const groups = computed(() => docsGroups(nav.value, version.value))
 
 // Machine-readable docs (llmstxt.org), linked at the foot of every section.
-const llmLinks = [
-  { label: 'llms.txt', href: '/llms.txt' },
-  { label: 'llms-full.txt', href: '/llms-full.txt' },
-]
+// They are per version, like the pages they index: an agent reading the 0.1.1
+// sidebar should be handed the 0.1.1 index, not the newest one.
+const llmLinks = computed(() => [
+  { label: 'llms.txt', href: `${docsPath(version.value)}/llms.txt` },
+  { label: 'llms-full.txt', href: `${docsPath(version.value)}/llms-full.txt` },
+])
 
 function itemActive(path: string) {
   return route.path === path
