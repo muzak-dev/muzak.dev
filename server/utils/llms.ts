@@ -65,6 +65,7 @@ export async function buildLlmsIndex(version: string): Promise<string> {
       'the log.',
     '',
     `The full text of every page is at ${other.full}.`,
+    `Every release, and the migration for each breaking change, is at ${SITE_URL}/changelog.`,
     '',
   ]
 
