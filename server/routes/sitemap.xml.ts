@@ -1,17 +1,28 @@
 // A sitemap generated from the docs content at build time, so it never goes
 // stale. Prerendered (see nuxt.config `nitro.prerender.routes`).
+//
+// Every version's pages are listed, because an archived page is still a page a
+// search should be able to reach. What separates them is priority: the current
+// release ranks above the versions behind it, and each archived page also
+// carries a canonical link to its successor (see the docs page component), so
+// the newest URL is the one that accumulates the ranking.
+
+import { DOCS_VERSIONS, LATEST_DOCS_VERSION } from '#shared/docsVersions'
 
 export default defineEventHandler(async (event) => {
-  const docs = await collectDocs()
+  const perVersion = await Promise.all(DOCS_VERSIONS.map((v) => collectDocs(v.version)))
+  const docs = perVersion.flat()
   const lastmod = new Date().toISOString().slice(0, 10)
+
+  const priorityOf = (doc: (typeof docs)[number]) => {
+    if (doc.version !== LATEST_DOCS_VERSION) return '0.4'
+    return doc.slug === 'introduction' ? '0.9' : '0.8'
+  }
 
   const urls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/docs`, priority: '0.7' },
-    ...docs.map((doc) => ({
-      loc: doc.url,
-      priority: doc.path.endsWith('/introduction') ? '0.9' : '0.8',
-    })),
+    ...docs.map((doc) => ({ loc: doc.url, priority: priorityOf(doc) })),
   ]
 
   const body =

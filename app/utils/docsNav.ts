@@ -1,12 +1,18 @@
 import type { ContentNavigationItem } from '@nuxt/content'
+import { docsPath } from '#shared/docsVersions'
 
-// Docs navigation. A folder directly under `content/docs/` is a menu group and
-// a markdown file inside it is a page, so `1.getting-started/3.routers.md` is
-// served at `/docs/getting-started/routers`. Numeric prefixes order the sidebar
-// and are stripped from the URL.
+// Docs navigation. The tree is versioned: `content/docs/<version>/` holds one
+// version's pages, a folder inside it is a menu group and a markdown file
+// inside that is a page, so `0.1.1/1.getting-started/3.routers.md` is served at
+// `/docs/0.1.1/getting-started/routers`. Numeric prefixes order the sidebar and
+// are stripped from the URL; the version segment is not a prefix and survives.
+//
+// Everything here works on one version at a time, because that is what the
+// sidebar shows: a reader is inside a version, and the version picker is what
+// moves them between trees.
 
 // `queryCollectionNavigation('docs')` may nest everything under a single
-// `/docs` wrapper, so descend it and always work with the group list.
+// `/docs` wrapper, so descend it and always work with the version list.
 function topLevel(
   nav: ContentNavigationItem[] | null | undefined,
 ): ContentNavigationItem[] {
@@ -17,11 +23,22 @@ function topLevel(
   return items
 }
 
-/** The menu groups, in sidebar order. */
+// The node holding one version's groups, or undefined when the tree carries
+// nothing for that version.
+function versionNode(
+  nav: ContentNavigationItem[] | null | undefined,
+  version: string,
+): ContentNavigationItem | undefined {
+  return topLevel(nav).find((item) => item.path === docsPath(version))
+}
+
+/** The menu groups of one version, in sidebar order. */
 export function docsGroups(
   nav: ContentNavigationItem[] | null | undefined,
+  version: string,
 ): ContentNavigationItem[] {
-  return topLevel(nav).filter((g) => (g.children?.length ?? 0) > 0)
+  const children = versionNode(nav, version)?.children ?? []
+  return children.filter((g) => (g.children?.length ?? 0) > 0)
 }
 
 // First actual page (a node with no children) under a list, depth first.
@@ -37,9 +54,41 @@ function firstLeaf(items: ContentNavigationItem[] | undefined): string | undefin
   return undefined
 }
 
-/** First page in the whole docs tree, used to resolve a bare `/docs` visit. */
+/**
+ * First page of one version, used to resolve a bare `/docs` visit and to land
+ * a reader somewhere sensible when the page they were on does not exist in the
+ * version they switched to.
+ */
 export function firstDocLeaf(
   nav: ContentNavigationItem[] | null | undefined,
+  version: string,
 ): string | undefined {
-  return firstLeaf(topLevel(nav))
+  return firstLeaf(versionNode(nav, version)?.children)
+}
+
+/**
+ * Every page of one version, in sidebar order.
+ *
+ * This is what the version picker tests a page's existence against, and what
+ * the previous/next links are computed from. Deriving them from the navigation
+ * rather than from the collection's own ordering is what keeps them inside the
+ * version: the collection holds every version at once, so its neighbours run
+ * off the end of one tree and into the next.
+ */
+export function docLeaves(
+  nav: ContentNavigationItem[] | null | undefined,
+  version: string,
+): ContentNavigationItem[] {
+  const leaves: ContentNavigationItem[] = []
+  const walk = (items: ContentNavigationItem[] | undefined) => {
+    for (const it of items ?? []) {
+      if (it.children?.length) {
+        walk(it.children)
+      } else if (it.page !== false) {
+        leaves.push(it)
+      }
+    }
+  }
+  walk(versionNode(nav, version)?.children)
+  return leaves
 }

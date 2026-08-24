@@ -1,5 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
 
+import { DOCS_VERSIONS } from './shared/docsVersions'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -19,9 +21,21 @@ export default defineNuxtConfig({
   // The sitemap and the llms.txt / llms-full.txt GEO artifacts are server
   // routes generated from the docs content; prerender them so they ship as
   // static files and never drift from the docs.
+  //
+  // The root pair describes the current release, and every published version
+  // has a pair of its own. The list is derived from the version registry, so a
+  // release is still one edit in shared/docsVersions.ts.
   nitro: {
     prerender: {
-      routes: ['/sitemap.xml', '/llms.txt', '/llms-full.txt'],
+      routes: [
+        '/sitemap.xml',
+        '/llms.txt',
+        '/llms-full.txt',
+        ...DOCS_VERSIONS.flatMap((v) => [
+          `/docs/${v.version}/llms.txt`,
+          `/docs/${v.version}/llms-full.txt`,
+        ]),
+      ],
     },
   },
 

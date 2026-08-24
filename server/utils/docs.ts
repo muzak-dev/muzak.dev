@@ -1,12 +1,18 @@
-// Reads the docs markdown files straight from `content/docs/**` at build time.
+// Reads the docs markdown files straight from `content/docs/<version>/**`.
 //
 // The sitemap, llms.txt, and llms-full.txt routes are prerendered, so this runs
 // during the build when the content files are on disk. It is the single source
-// of truth for those three artifacts, so they never drift from the docs.
+// of truth for those artifacts, so they never drift from the docs.
+//
+// Everything here is scoped to one version, because a version is a complete
+// tree of its own: two versions may hold different pages under the same group,
+// and the machine-readable indexes are published per version for that reason.
 
 import { execFileSync } from 'node:child_process'
 import { promises as fs, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+
+import { DOCS_VERSIONS, LATEST_DOCS_VERSION, docsPath } from '#shared/docsVersions'
 
 /** The canonical site origin, used to build absolute URLs. */
 export const SITE_URL = 'https://muzak.dev'
@@ -14,10 +20,12 @@ export const SITE_URL = 'https://muzak.dev'
 export interface DocEntry {
   /** Absolute path to the markdown file. */
   file: string
-  /** Site path, e.g. `/docs/techniques/rate-limiting`. */
+  /** Site path, e.g. `/docs/0.1.1/techniques/rate-limiting`. */
   path: string
   /** Absolute URL. */
   url: string
+  /** The documentation version this page belongs to, e.g. `0.1.1`. */
+  version: string
   /** Menu group, e.g. `techniques`. */
   group: string
   /** Page slug within the group, e.g. `rate-limiting`. */
@@ -108,9 +116,15 @@ async function walk(dir: string): Promise<string[]> {
   return out
 }
 
-/** Collects every doc in sidebar order. */
-export async function collectDocs(): Promise<DocEntry[]> {
-  const root = join(process.cwd(), 'content', 'docs')
+/**
+ * Collects every doc of one version, in sidebar order.
+ *
+ * The version is a directory under `content/docs/`, and the tree beneath it is
+ * the familiar `<group>/<page>.md` shape, so the group and slug are read from
+ * the segments below the version rather than from the top of the path.
+ */
+export async function collectDocs(version: string = LATEST_DOCS_VERSION): Promise<DocEntry[]> {
+  const root = join(process.cwd(), 'content', 'docs', version)
   const files = await walk(root)
 
   const entries: DocEntry[] = []
@@ -118,13 +132,14 @@ export async function collectDocs(): Promise<DocEntry[]> {
     const rel = relative(root, file).replace(/\.md$/, '')
     const segments = rel.split('/')
     const slug = segments.map(stripPrefix)
-    const path = `/docs/${slug.join('/')}`
+    const path = docsPath(version, slug.join('/'))
     const raw = await fs.readFile(file, 'utf8')
     const parsed = parse(raw)
     entries.push({
       file,
       path,
       url: `${SITE_URL}${path}`,
+      version,
       group: slug[0] ?? '',
       slug: slug[1] ?? '',
       lastModified: lastModifiedOf(file),
@@ -149,12 +164,18 @@ export async function collectDocs(): Promise<DocEntry[]> {
   return entries
 }
 
+/** Collects every doc of every published version, newest version first. */
+export async function collectAllDocs(): Promise<DocEntry[]> {
+  const perVersion = await Promise.all(DOCS_VERSIONS.map((v) => collectDocs(v.version)))
+  return perVersion.flat()
+}
+
 /**
  * Human label for a menu group, used as the heading in `llms.txt`.
  *
- * The groups are the folders directly under `content/docs/`, so the labels here
- * have to match what the sidebar shows: `1.getting-started` reaches this as
- * `getting-started`.
+ * The groups are the folders directly under `content/docs/<version>/`, so the
+ * labels here have to match what the sidebar shows: `1.getting-started` reaches
+ * this as `getting-started`.
  */
 export function groupLabel(group: string): string {
   const named: Record<string, string> = {

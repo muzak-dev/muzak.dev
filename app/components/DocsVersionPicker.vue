@@ -1,30 +1,45 @@
 <script setup lang="ts">
-// Docs version picker. Default = latest, shown as "0.1.1 - Latest".
+import { DOCS_VERSIONS, docsPath, splitDocsPath } from '#shared/docsVersions'
+import type { DocsVersion } from '#shared/docsVersions'
+
+// Docs version picker. The selection is the URL, not local state: every page
+// lives under `/docs/<version>/`, so switching version is a navigation to the
+// same page in another tree.
+//
+// A page does not have to exist in both. When the equivalent page is missing
+// from the version being switched to - it was added later, renamed, or removed
+// - the reader is taken to that version's first page instead, which is the only
+// honest destination: pretending the page exists would 404 them.
+//
 // The dropdown is a glassmorphism panel (see .version-popper in tailwind.css).
 //
 // `eager-mount` matters here. floating-vue only mounts the popper slot once the
 // dropdown is shown, so without it the glass panel is painted a frame before
 // the list inside it exists, and the background visibly arrives first.
-interface DocVersion {
-  v: string
-  label?: string
+const route = useRoute()
+const current = useDocsVersion()
+const { data: nav } = await useDocsNav()
+
+const versions = DOCS_VERSIONS
+const display = computed(() => {
+  const active = versions.find((v) => v.version === current.value)
+  return active?.label ? `${active.version} - ${active.label}` : (active?.version ?? current.value)
+})
+
+// Where a given version's copy of the current page lives, falling back to that
+// version's first page when it has no copy of it.
+function targetFor(version: string): string {
+  const { rest } = splitDocsPath(route.path)
+  const equivalent = docsPath(version, rest)
+  const exists = docLeaves(nav.value, version).some((leaf) => leaf.path === equivalent)
+  return exists ? equivalent : (firstDocLeaf(nav.value, version) ?? docsPath(version))
 }
 
-const versions: DocVersion[] = [
-  { v: '0.1.1', label: 'Latest' },
-  { v: '0.1.0' },
-  { v: '0.0.3' },
-  { v: '0.0.2' },
-  { v: '0.0.1' },
-]
-
-const selected = ref<DocVersion>(versions[0])
-const display = computed(() =>
-  selected.value.label ? `${selected.value.v} - ${selected.value.label}` : selected.value.v,
-)
-
-function pick(ver: DocVersion) {
-  selected.value = ver
+async function pick(ver: DocsVersion) {
+  if (ver.version === current.value) {
+    return
+  }
+  await navigateTo(targetFor(ver.version))
 }
 </script>
 
@@ -50,31 +65,26 @@ function pick(ver: DocVersion) {
 
     <template #popper="{ hide }">
       <ul class="flex flex-col gap-0.5">
-        <li v-for="ver in versions" :key="ver.v">
+        <li v-for="ver in versions" :key="ver.version">
           <button
             type="button"
             class="flex w-full cursor-pointer items-center justify-between gap-3 px-2.5 py-1.5 font-mono text-[0.6875rem] transition-colors"
             :class="
-              selected.v === ver.v
+              current === ver.version
                 ? 'bg-white/5 text-rust'
                 : 'text-ash hover:bg-white/5 hover:text-bone'
             "
             @click="pick(ver); hide()"
           >
             <span class="flex items-center gap-2">
-              <span>{{ ver.v }}</span>
+              <span>{{ ver.version }}</span>
               <span
                 v-if="ver.label"
                 class="bg-rust/15 px-1.5 py-0.5 text-[0.5rem] font-semibold uppercase tracking-wider text-rust"
                 >{{ ver.label }}</span
               >
             </span>
-            <Icon
-              v-if="selected.v === ver.v"
-              name="lucide:check"
-              size="13"
-              aria-hidden="true"
-            />
+            <Icon v-if="current === ver.version" name="lucide:check" size="13" aria-hidden="true" />
           </button>
         </li>
       </ul>
