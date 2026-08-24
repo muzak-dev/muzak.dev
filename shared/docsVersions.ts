@@ -29,7 +29,10 @@ export interface DocsVersion {
  * before the documentation was versioned, and no tree was ever kept for them.
  * Listing a version whose pages do not exist is worse than not offering it.
  */
-export const DOCS_VERSIONS: DocsVersion[] = [{ version: '0.1.1', label: 'Latest' }]
+export const DOCS_VERSIONS: DocsVersion[] = [
+  { version: '0.2.0', label: 'Latest' },
+  { version: '0.1.1' },
+]
 
 /** The version an unversioned `/docs/...` request is sent to. */
 export const LATEST_DOCS_VERSION: string = DOCS_VERSIONS[0]!.version
