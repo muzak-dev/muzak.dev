@@ -31,6 +31,10 @@ export default defineNuxtConfig({
         '/sitemap.xml',
         '/llms.txt',
         '/llms-full.txt',
+        // The changelog is read from the framework's repository at build time,
+        // so prerendering it is what keeps that a build-time dependency rather
+        // than a request-time one.
+        '/changelog',
         ...DOCS_VERSIONS.flatMap((v) => [
           `/docs/${v.version}/llms.txt`,
           `/docs/${v.version}/llms-full.txt`,

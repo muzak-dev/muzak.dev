@@ -66,6 +66,9 @@ onMounted(() => {
           >{{ item.label }}</a
         >
         <nuxt-link to="/docs" class="px-2.5 py-1 transition-colors hover:text-bone">docs</nuxt-link>
+        <nuxt-link to="/changelog" class="px-2.5 py-1 transition-colors hover:text-bone"
+          >changelog</nuxt-link
+        >
       </nav>
 
       <div class="ml-auto flex items-center gap-3 font-mono text-[11px]">

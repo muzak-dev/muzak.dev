@@ -27,6 +27,11 @@ const stars = computed(() => (github.value?.stars == null ? null : formatCount(g
       </NuxtLink>
 
       <div class="ml-auto flex items-center gap-3 font-mono text-[11px]">
+        <NuxtLink
+          to="/changelog"
+          class="hidden h-7 items-center px-2 text-ash transition-colors hover:text-bone sm:flex"
+          >changelog</NuxtLink
+        >
         <span class="flex h-7 items-center px-2 text-ash">v0.2.0</span>
 
         <a

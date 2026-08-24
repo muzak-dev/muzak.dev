@@ -22,6 +22,7 @@ export default defineEventHandler(async (event) => {
   const urls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/docs`, priority: '0.7' },
+    { loc: `${SITE_URL}/changelog`, priority: '0.6' },
     ...docs.map((doc) => ({ loc: doc.url, priority: priorityOf(doc) })),
   ]
 
