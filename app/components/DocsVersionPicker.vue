@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Docs version picker. Default = latest, shown as "0.1.0 - Latest".
+// Docs version picker. Default = latest, shown as "0.1.1 - Latest".
 // The dropdown is a glassmorphism panel (see .version-popper in tailwind.css).
 //
 // `eager-mount` matters here. floating-vue only mounts the popper slot once the
@@ -11,7 +11,8 @@ interface DocVersion {
 }
 
 const versions: DocVersion[] = [
-  { v: '0.1.0', label: 'Latest' },
+  { v: '0.1.1', label: 'Latest' },
+  { v: '0.1.0' },
   { v: '0.0.3' },
   { v: '0.0.2' },
   { v: '0.0.1' },

@@ -27,7 +27,7 @@ const stars = computed(() => (github.value?.stars == null ? null : formatCount(g
       </NuxtLink>
 
       <div class="ml-auto flex items-center gap-3 font-mono text-[11px]">
-        <span class="flex h-7 items-center px-2 text-ash">v0.1.0</span>
+        <span class="flex h-7 items-center px-2 text-ash">v0.1.1</span>
 
         <a
           :href="discord"

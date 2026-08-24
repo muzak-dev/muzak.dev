@@ -57,7 +57,7 @@ const ldSoftware = {
   operatingSystem: 'Linux, macOS, Windows',
   description: site.description,
   url: site.url,
-  softwareVersion: '0.1.0',
+  softwareVersion: '0.1.1',
   programmingLanguage: 'Go',
   runtimePlatform: 'Go 1.27',
   downloadUrl: 'https://github.com/muzak-dev/framework',
