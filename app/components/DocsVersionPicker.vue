@@ -45,6 +45,7 @@ async function pick(ver: DocsVersion) {
 
 <template>
   <VDropdown
+    v-if="versions.length > 1"
     :distance="6"
     placement="bottom-start"
     popper-class="version-popper"

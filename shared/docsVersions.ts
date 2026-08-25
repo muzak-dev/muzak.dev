@@ -12,7 +12,7 @@
 //
 // Nuxt Content leaves a directory whose name is a bare semver alone rather than
 // treating the leading `0.` as an ordering prefix (its SEMVER_REGEX), which is
-// what lets `content/docs/0.1.1/` map to `/docs/0.1.1/` untouched.
+// what lets `content/docs/0.2.2/` map to `/docs/0.2.2/` untouched.
 
 export interface DocsVersion {
   /** The version as it appears in the URL and in the picker, without a `v`. */
@@ -25,15 +25,15 @@ export interface DocsVersion {
  * Every published documentation version, newest first. The first entry is the
  * one `/docs/...` resolves to.
  *
- * Versions before 0.1.1 are deliberately absent: the site advertised them
- * before the documentation was versioned, and no tree was ever kept for them.
- * Listing a version whose pages do not exist is worse than not offering it.
+ * Only the current release is published. Older trees were removed rather than
+ * kept: a version of the documentation nobody maintains drifts away from the
+ * code it describes, and a reader who finds it has no way to tell.
+ *
+ * Listing a version whose pages do not exist is worse than not offering it, so
+ * this list and the directories under content/docs are kept in step.
  */
 export const DOCS_VERSIONS: DocsVersion[] = [
   { version: '0.2.2', label: 'Latest' },
-  { version: '0.2.1' },
-  { version: '0.2.0' },
-  { version: '0.1.1' },
 ]
 
 /** The version an unversioned `/docs/...` request is sent to. */
