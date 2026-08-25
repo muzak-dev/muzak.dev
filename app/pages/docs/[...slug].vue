@@ -167,7 +167,7 @@ useHead({
     <footer
       class="mt-10 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[11px] text-faint sm:flex-row sm:items-center sm:justify-between"
     >
-      <span>Open source under MIT / Apache-2.0 · sustained by the people who ship on it.</span>
+      <span>Open source under MIT / Apache-2.0.</span>
       <span>Built on net/http, and nothing else.</span>
     </footer>
   </main>
