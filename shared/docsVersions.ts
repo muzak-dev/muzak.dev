@@ -30,7 +30,8 @@ export interface DocsVersion {
  * Listing a version whose pages do not exist is worse than not offering it.
  */
 export const DOCS_VERSIONS: DocsVersion[] = [
-  { version: '0.2.1', label: 'Latest' },
+  { version: '0.2.2', label: 'Latest' },
+  { version: '0.2.1' },
   { version: '0.2.0' },
   { version: '0.1.1' },
 ]
