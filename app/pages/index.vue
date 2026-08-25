@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { LATEST_DOCS_VERSION } from '#shared/docsVersions'
 import { FAQ } from '~/utils/faq'
 import { SHOW_SPONSORS } from '~/utils/sponsors'
 
@@ -57,7 +58,8 @@ const ldSoftware = {
   operatingSystem: 'Linux, macOS, Windows',
   description: site.description,
   url: site.url,
-  softwareVersion: '0.2.0',
+  // Kept in step with DOCS_VERSIONS rather than written twice.
+  softwareVersion: LATEST_DOCS_VERSION,
   programmingLanguage: 'Go',
   runtimePlatform: 'Go 1.27',
   downloadUrl: 'https://github.com/muzak-dev/framework',

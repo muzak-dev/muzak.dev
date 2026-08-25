@@ -3,8 +3,8 @@ import { docsPath } from '#shared/docsVersions'
 
 // Docs navigation. The tree is versioned: `content/docs/<version>/` holds one
 // version's pages, a folder inside it is a menu group and a markdown file
-// inside that is a page, so `0.2.0/1.getting-started/3.routers.md` is served at
-// `/docs/0.2.0/getting-started/routers`. Numeric prefixes order the sidebar and
+// inside that is a page, so `0.2.2/1.getting-started/3.routers.md` is served at
+// `/docs/0.2.2/getting-started/routers`. Numeric prefixes order the sidebar and
 // are stripped from the URL; the version segment is not a prefix and survives.
 //
 // Everything here works on one version at a time, because that is what the
