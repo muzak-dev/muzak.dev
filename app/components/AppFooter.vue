@@ -15,7 +15,7 @@
       </div>
       <!-- This line used to close the sponsors section, which is off for the
            first release. It belongs on every page anyway. -->
-      <span>Open source under MIT / Apache-2.0 · sustained by the people who ship on it.</span>
+      <span>Open source under MIT / Apache-2.0.</span>
     </div>
   </footer>
 </template>
