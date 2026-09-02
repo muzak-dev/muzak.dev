@@ -15,7 +15,7 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
             class="rise mb-5 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-rust"
             style="animation-delay: 0.05s"
           >
-            <span class="h-px w-6 bg-rust2" /> Muzak for Go 1.27 · v0.2.4
+            <span class="h-px w-6 bg-rust2" /> Muzak for Go 1.27 · v0.2.5
           </p>
           <h1
             id="hero-title"
@@ -58,7 +58,7 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
             style="animation-delay: 0.34s"
           >
             <span class="flex items-center gap-1.5"
-              ><span class="h-1.5 w-1.5 rounded-full bg-brass shadow-[0_0_8px_#C9A24B]" /> v0.2.4
+              ><span class="h-1.5 w-1.5 rounded-full bg-brass shadow-[0_0_8px_#C9A24B]" /> v0.2.5
               &middot; pre-1.0</span
             >
             <span>Go <span class="text-ash">1.27</span></span>

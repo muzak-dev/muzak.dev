@@ -9,7 +9,7 @@
 //
 // The redirect is 302 and not 301: the target moves with every release, and a
 // permanent redirect is one a browser stops asking about. Named versions are
-// left alone, which is what keeps `/docs/0.2.4/...` and the per-version
+// left alone, which is what keeps `/docs/0.2.5/...` and the per-version
 // `llms.txt` routes reachable.
 //
 // This runs after `docs-markdown` (Nitro orders middleware by filename), so a
