@@ -6,8 +6,8 @@ import { withDocsVersion } from '#shared/docsVersions'
 // Documentation is authored with unversioned links (`/docs/techniques/json`),
 // because a version is cut by copying the tree and rewriting 133 links in every
 // copy is not a thing anyone should do. The version the reader is in is
-// therefore added here, at render time: a link followed inside the 0.2.3 docs
-// lands on the 0.2.3 page rather than dropping the reader into the newest one
+// therefore added here, at render time: a link followed inside the 0.2.4 docs
+// lands on the 0.2.4 page rather than dropping the reader into the newest one
 // halfway through a sentence.
 //
 // A link that already names a version is left alone, which is how one page
