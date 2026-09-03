@@ -17,8 +17,8 @@ export interface TermStep {
 export const TERMINAL_SCRIPTS: Record<string, TermStep[]> = {
   install: [
     { cmd: 'go get muzak.dev/framework' },
-    { out: 'go: downloading muzak.dev/framework v0.2.5', cls: 'c-faint', d: 280 },
-    { out: 'go: added muzak.dev/framework v0.2.5', cls: 'c-ash', d: 240 },
+    { out: 'go: downloading muzak.dev/framework v0.2.6', cls: 'c-faint', d: 280 },
+    { out: 'go: added muzak.dev/framework v0.2.6', cls: 'c-ash', d: 240 },
     { html: '<span class="c-patina">✓</span> <span class="c-ash">no third party dependencies</span>', d: 200 },
     { cmd: 'go run ./cmd' },
     { html: '<span class="c-faint">14:32:07.482</span> <span class="c-bone">INFO</span>  <span class="c-brass">[Server]</span> Starting Muzak application...', d: 220 },
@@ -28,7 +28,7 @@ export const TERMINAL_SCRIPTS: Record<string, TermStep[]> = {
     { cmd: 'go version' },
     { out: 'go version go1.27.0 darwin/arm64', cls: 'c-bone', d: 160 },
     { cmd: 'go get muzak.dev/framework' },
-    { html: '<span class="c-patina">✓</span> <span class="c-ash">added</span> <span class="c-bone">muzak.dev/framework v0.2.5</span>', d: 120 },
+    { html: '<span class="c-patina">✓</span> <span class="c-ash">added</span> <span class="c-bone">muzak.dev/framework v0.2.6</span>', d: 120 },
   ],
   layout: [
     { cmd: 'tree -L 2 awesome-api' },
