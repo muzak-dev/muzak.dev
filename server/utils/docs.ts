@@ -20,11 +20,11 @@ export const SITE_URL = 'https://muzak.dev'
 export interface DocEntry {
   /** Absolute path to the markdown file. */
   file: string
-  /** Site path, e.g. `/docs/0.2.6/techniques/rate-limiting`. */
+  /** Site path, e.g. `/docs/0.2.7/techniques/rate-limiting`. */
   path: string
   /** Absolute URL. */
   url: string
-  /** The documentation version this page belongs to, e.g. `0.2.6`. */
+  /** The documentation version this page belongs to, e.g. `0.2.7`. */
   version: string
   /** Menu group, e.g. `techniques`. */
   group: string

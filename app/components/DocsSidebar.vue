@@ -13,7 +13,7 @@ const version = useDocsVersion()
 const groups = computed(() => docsGroups(nav.value, version.value))
 
 // Machine-readable docs (llmstxt.org), linked at the foot of every section.
-// They are per version, like the pages they index: an agent reading the 0.2.6
+// They are per version, like the pages they index: an agent reading the 0.2.7
 // sidebar should be handed the 0.1.1 index, not the newest one.
 const llmLinks = computed(() => [
   { label: 'llms.txt', href: `${docsPath(version.value)}/llms.txt` },
