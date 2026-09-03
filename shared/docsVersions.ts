@@ -12,7 +12,7 @@
 //
 // Nuxt Content leaves a directory whose name is a bare semver alone rather than
 // treating the leading `0.` as an ordering prefix (its SEMVER_REGEX), which is
-// what lets `content/docs/0.2.5/` map to `/docs/0.2.5/` untouched.
+// what lets `content/docs/0.2.6/` map to `/docs/0.2.6/` untouched.
 
 export interface DocsVersion {
   /** The version as it appears in the URL and in the picker, without a `v`. */
@@ -33,7 +33,7 @@ export interface DocsVersion {
  * this list and the directories under content/docs are kept in step.
  */
 export const DOCS_VERSIONS: DocsVersion[] = [
-  { version: '0.2.5', label: 'Latest' },
+  { version: '0.2.6', label: 'Latest' },
 ]
 
 /** The version an unversioned `/docs/...` request is sent to. */
