@@ -5,7 +5,7 @@ import { SPONSORS as sponsors, SPONSOR_MARKS as MARKS } from '~/utils/sponsors'
 <template>
   <section id="sponsors" class="border-b border-line scroll-mt-16" aria-labelledby="sponsors-title">
     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 py-14 md:py-20">
-      <div class="reveal flex flex-col items-center text-center">
+      <div class="flex flex-col items-center text-center">
         <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">Backed &amp; sponsored by</p>
         <h2 id="sponsors-title" class="mt-3 text-[clamp(1.4rem,2.6vw,1.9rem)] font-semibold tracking-[-0.02em]">
           Forged with good company
@@ -14,7 +14,7 @@ import { SPONSORS as sponsors, SPONSOR_MARKS as MARKS } from '~/utils/sponsors'
     </div>
 
     <!-- marquee -->
-    <div class="reveal marquee-wrap relative overflow-hidden border-y border-line bg-ink2/40 py-1">
+    <div class="marquee-wrap relative overflow-hidden border-y border-line bg-ink2/40 py-1">
       <div class="marquee">
         <div v-for="track in 2" :key="track" class="marquee-track" aria-hidden="true">
           <a v-for="s in sponsors" :key="s.n" href="#sponsors" class="spon">

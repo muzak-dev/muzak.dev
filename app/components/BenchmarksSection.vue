@@ -1,7 +1,7 @@
 <template>
   <section id="bench" class="border-b border-line scroll-mt-16" aria-labelledby="bench-title">
     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 md:py-24">
-      <div class="reveal max-w-3xl">
+      <div class="max-w-3xl">
         <p class="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">Benchmarks</p>
         <h2
           id="bench-title"
@@ -10,7 +10,7 @@
           Compiled once, not per request
         </h2>
       </div>
-      <p class="reveal mt-4 max-w-xl text-[14.5px] leading-relaxed text-ash">
+      <p class="mt-4 max-w-xl text-[14.5px] leading-relaxed text-ash">
         Apple M1 Pro, darwin/arm64, Go 1.27, medians of three runs. Every case drives the real code
         path through <span class="font-mono text-[12.5px] text-bone">App.ServeHTTP</span>, so
         routing, binding, dependencies and encoding are all included.
@@ -18,7 +18,7 @@
 
       <!-- animated counters -->
       <div
-        class="reveal mt-10 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line lg:grid-cols-4"
+        class="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line lg:grid-cols-4"
       >
         <div class="bg-ink2 p-5 sm:p-6">
           <div class="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">Route match</div>
@@ -75,7 +75,7 @@
       <!-- chart + datasheet -->
       <div class="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-[1.6fr_1fr]">
         <!-- throughput chart -->
-        <div class="reveal overflow-hidden border border-line bg-ink2">
+        <div class="overflow-hidden border border-line bg-ink2">
           <div
             class="shrink-0 flex items-center justify-between border-b border-line bg-ink3 px-3.5 py-2 font-mono text-[11px]"
           >
@@ -94,7 +94,7 @@
         </div>
 
         <!-- material datasheet -->
-        <div class="reveal overflow-hidden border border-line bg-ink2">
+        <div class="overflow-hidden border border-line bg-ink2">
           <div
             class="shrink-0 flex items-center justify-between border-b border-line bg-ink3 px-3.5 py-2 font-mono text-[11px]"
           >

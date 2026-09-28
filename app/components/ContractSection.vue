@@ -1,7 +1,7 @@
 <template>
   <section id="contract" class="border-b border-line scroll-mt-16" aria-labelledby="contract-title">
     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 md:py-24">
-      <div class="reveal max-w-2xl">
+      <div class="max-w-2xl">
         <p class="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">The contract</p>
         <h2
           id="contract-title"
@@ -18,7 +18,7 @@
       </div>
 
       <div
-        class="reveal mt-9 overflow-hidden border border-line bg-ink2 shadow-[0_30px_80px_-50px_rgba(0,0,0,.9)]"
+        class="mt-9 overflow-hidden border border-line bg-ink2 shadow-[0_30px_80px_-50px_rgba(0,0,0,.9)]"
       >
         <div class="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr]">
           <!-- left: the route -->
@@ -100,7 +100,7 @@
       </div>
 
       <!-- validation line -->
-      <div class="reveal mt-5 overflow-hidden border border-line bg-ink2">
+      <div class="mt-5 overflow-hidden border border-line bg-ink2">
         <div
           class="flex items-center justify-between shrink-0 border-b border-line bg-ink3 px-3.5 py-2 font-mono text-[11px] text-ash"
         >

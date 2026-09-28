@@ -13,7 +13,7 @@ const lifecycle = [
 <template>
   <section id="install" class="border-b border-line scroll-mt-16" aria-labelledby="install-title">
     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 md:py-24">
-      <div class="reveal max-w-2xl">
+      <div class="max-w-2xl">
         <p class="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">Installation</p>
         <h2
           id="install-title"
@@ -46,7 +46,7 @@ const lifecycle = [
       </div>
 
       <!-- application lifecycle -->
-      <div class="reveal mt-12 mb-5 flex items-center gap-4">
+      <div class="mt-12 mb-5 flex items-center gap-4">
         <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-faint"
           >The application lifecycle</span
         >
@@ -66,7 +66,7 @@ const lifecycle = [
 
         <!-- note card -->
         <div
-          class="reveal flex h-[126px] flex-col justify-center border border-line2/60 bg-ink2/60 px-4 py-3"
+          class="flex h-[126px] flex-col justify-center border border-line2/60 bg-ink2/60 px-4 py-3"
         >
           <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-patina"
             >› safe by default</span

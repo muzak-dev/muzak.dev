@@ -5,7 +5,7 @@ import { FAQ } from '~/utils/faq'
 <template>
   <section id="faq" class="border-b border-line scroll-mt-16" aria-labelledby="faq-title">
     <div class="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 md:py-24">
-      <div class="reveal max-w-2xl">
+      <div class="max-w-2xl">
         <p class="mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">FAQ</p>
         <h2 id="faq-title" class="text-[clamp(1.9rem,3.6vw,2.6rem)] font-semibold tracking-[-0.02em]">
           Questions, answered plainly
@@ -16,7 +16,7 @@ import { FAQ } from '~/utils/faq'
         </p>
       </div>
 
-      <div class="reveal mt-9 divide-y divide-line overflow-hidden border border-line bg-ink2">
+      <div class="mt-9 divide-y divide-line overflow-hidden border border-line bg-ink2">
         <details
           v-for="(item, i) in FAQ"
           :key="i"

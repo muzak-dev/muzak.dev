@@ -13,7 +13,7 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
 </script>
 
 <template>
-  <div class="reveal flex h-[126px] flex-col overflow-hidden border border-line bg-ink2">
+  <div class="flex h-[126px] flex-col overflow-hidden border border-line bg-ink2">
     <div
       class="flex items-center justify-between shrink-0 border-b border-line bg-ink3 px-3.5 py-2 font-mono text-[11px]"
     >

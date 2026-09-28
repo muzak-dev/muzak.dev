@@ -19,13 +19,13 @@ async function copy() {
     <div class="relative mx-auto max-w-[1200px] px-4 sm:px-6 py-20 md:py-28 text-center">
       <h2
         id="cta-title"
-        class="reveal mx-auto max-w-2xl text-[clamp(1.9rem,4vw,2.8rem)] font-semibold leading-[1.04] tracking-[-0.02em]"
+        class="mx-auto max-w-2xl text-[clamp(1.9rem,4vw,2.8rem)] font-semibold leading-[1.04] tracking-[-0.02em]"
       >
         Stop finding contract bugs in production.<br ><span class="text-ash">Start finding them at</span>
         <span class="text-rust">compile time</span>.
       </h2>
       <div
-        class="reveal mx-auto mt-9 flex max-w-md items-center justify-between gap-3 border border-line2 bg-ink2 px-4 py-3 font-mono text-[13px]"
+        class="mx-auto mt-9 flex max-w-md items-center justify-between gap-3 border border-line2 bg-ink2 px-4 py-3 font-mono text-[13px]"
       >
         <span
           ><span class="text-faint select-none">$ </span><span class="text-bone">{{ cmd }}</span
@@ -40,7 +40,7 @@ async function copy() {
           {{ copied ? 'copied' : 'copy' }}
         </button>
       </div>
-      <div class="reveal mt-7 flex flex-wrap items-center justify-center gap-3">
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
         <a
           href="/docs"
           class="bg-rust px-5 py-2.5 font-mono text-[12px] font-semibold text-ink transition-colors hover:bg-[#f06436]"
