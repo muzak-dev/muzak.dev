@@ -91,8 +91,6 @@ defineOgImageComponent('Muzak', {
 
 <template>
   <div class="min-h-screen">
-    <TheHeader />
-
     <main class="mx-auto max-w-[1200px] px-4 sm:px-6 py-14">
       <header class="border-b border-line pb-8">
         <p class="font-mono text-[11px] uppercase tracking-[0.22em] text-rust">Releases</p>
