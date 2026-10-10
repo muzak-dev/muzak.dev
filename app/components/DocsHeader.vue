@@ -32,7 +32,7 @@ const stars = computed(() => (github.value?.stars == null ? null : formatCount(g
           class="hidden h-7 items-center px-2 text-ash transition-colors hover:text-bone sm:flex"
           >changelog</NuxtLink
         >
-        <span class="flex h-7 items-center px-2 text-ash">v0.3.0</span>
+        <span class="flex h-7 items-center px-2 text-ash">v0.3.1</span>
 
         <a
           :href="discord"
