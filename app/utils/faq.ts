@@ -34,7 +34,7 @@ export const FAQ: FaqItem[] = [
   },
   {
     q: 'How fast is it?',
-    a: 'On an Apple M1 Pro, matching a static route takes about 64 nanoseconds and allocates nothing, and a full request through the framework runs in about 546 nanoseconds, which is faster than a bare net/http ServeMux handler doing the same work by hand at about 608 nanoseconds. Numbers differ by machine; the benchmarks are reproducible with go test -bench.',
+    a: 'On an Apple M1 Pro, matching a static route takes about 75 nanoseconds and allocates nothing, and a full request through the framework runs in about 790 nanoseconds, against about 630 for a bare net/http ServeMux handler doing the same work by hand. Almost all of the difference is one copy of the request that carries the matched route to logging, tracing and metrics. Numbers differ by machine; the benchmarks are reproducible with go test -bench.',
   },
   {
     q: 'What are the defaults?',

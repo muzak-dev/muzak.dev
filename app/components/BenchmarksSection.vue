@@ -11,7 +11,7 @@
         </h2>
       </div>
       <p class="mt-4 max-w-xl text-[14.5px] leading-relaxed text-ash">
-        Apple M1 Pro, darwin/arm64, Go 1.27, medians of three runs. Every case drives the real code
+        Apple M1 Pro, darwin/arm64, Go 1.27, medians of five runs. Every case drives the real code
         path through <span class="font-mono text-[12.5px] text-bone">App.ServeHTTP</span>, so
         routing, binding, dependencies and encoding are all included.
       </p>
@@ -24,7 +24,7 @@
           <div class="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">Route match</div>
           <div class="mt-3 flex items-baseline gap-1">
             <CountStat
-              :to="64"
+              :to="75"
               class="font-mono text-[clamp(2rem,4.4vw,2.9rem)] font-medium leading-none text-bone"
             />
             <span class="font-mono text-[15px] font-medium leading-none text-patina">ns</span>
@@ -49,13 +49,13 @@
           </div>
           <div class="mt-3 flex items-baseline gap-1">
             <CountStat
-              :to="546"
+              :to="786"
               class="font-mono text-[clamp(2rem,4.4vw,2.9rem)] font-medium leading-none text-bone"
             />
             <span class="font-mono text-[15px] font-medium leading-none text-patina">ns</span>
           </div>
           <div class="mt-2.5 font-mono text-[11px] text-ash">
-            vs <span class="text-bone">608</span> for ServeMux
+            vs <span class="text-bone">628</span> for ServeMux
           </div>
         </div>
         <div class="bg-ink2 p-5 sm:p-6">
@@ -104,24 +104,24 @@
               /></span>
               <span class="text-bone">MATERIAL DATASHEET</span>
             </div>
-            <span class="text-faint">rev 0.1.0</span>
+            <span class="text-faint">rev 0.3.0</span>
           </div>
           <div class="font-mono text-[12px]">
             <div class="flex items-center justify-between border-b border-line px-4 py-3">
               <span class="text-ash">Param lookup</span
-              ><span class="text-bone">80.5 <span class="text-patina">ns</span></span>
+              ><span class="text-bone">92.4 <span class="text-patina">ns</span></span>
             </div>
             <div class="flex items-center justify-between border-b border-line px-4 py-3">
               <span class="text-ash">Validation, 8 rule sets</span
-              ><span class="text-bone">0.77 <span class="text-patina">µs</span></span>
+              ><span class="text-bone">1.4 <span class="text-patina">µs</span></span>
             </div>
             <div class="flex items-center justify-between border-b border-line px-4 py-3">
               <span class="text-ash">WebSocket masking</span
-              ><span class="text-bone">13.5 <span class="text-brass">GB/s</span></span>
+              ><span class="text-bone">13.3 <span class="text-brass">GB/s</span></span>
             </div>
             <div class="flex items-center justify-between border-b border-line px-4 py-3">
               <span class="text-ash">Statement coverage</span
-              ><span class="text-patina">98.7%</span>
+              ><span class="text-patina">99.1%</span>
             </div>
             <div class="flex items-center justify-between px-4 py-3">
               <span class="text-ash">Runtime</span><span class="text-bone">net/http · Go 1.27</span>

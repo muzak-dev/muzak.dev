@@ -63,7 +63,7 @@ const status = ref<'idle' | 'busy' | 'done'>('idle')
             >
             <span>Go <span class="text-ash">1.27</span></span>
             <span><span class="text-patina">0</span> dependencies</span>
-            <span><span class="text-patina">98.7%</span> covered</span>
+            <span><span class="text-patina">99.1%</span> covered</span>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Real numbers from the framework's own benchmark suite (BENCHMARKS.md):
-// Apple M1 Pro, darwin/arm64, Go 1.27, median ns/op of three runs at
-// -benchtime=500ms. The ServeMux row is the baseline: a bare net/http handler
+// Apple M1 Pro, darwin/arm64, Go 1.27, framework 0.3.0, median ns/op of five
+// runs at -benchtime=500ms, one package at a time. The ServeMux row is the baseline: a bare net/http handler
 // doing the same work by hand, which is what makes the framework row mean
 // something.
 interface Bar {
@@ -12,15 +12,15 @@ interface Bar {
 }
 
 const BARS: Bar[] = [
-  { label: 'lookup, static', ns: 64.4 },
-  { label: 'lookup, param', ns: 80.5 },
-  { label: 'route, bare', ns: 545.6 },
-  { label: 'http.ServeMux', ns: 608.1, baseline: true },
-  { label: 'bind path+query', ns: 1403 },
-  { label: 'bind JSON body', ns: 3063 },
+  { label: 'lookup, static', ns: 75.3 },
+  { label: 'lookup, param', ns: 92.4 },
+  { label: 'route, bare', ns: 786.0 },
+  { label: 'http.ServeMux', ns: 628.4, baseline: true },
+  { label: 'bind path+query', ns: 1661 },
+  { label: 'bind JSON body', ns: 3406 },
 ]
 
-const MAX = 3063
+const MAX = 3406
 const PAD_L = 108
 const PAD_R = 56
 const WIDTH = 600
@@ -93,7 +93,7 @@ onMounted(() => {
     class="bench-chart w-full"
     viewBox="0 0 600 200"
     role="img"
-    aria-label="Nanoseconds per operation: static route lookup 64.4, param lookup 80.5, a bare framework route 545.6, a hand-written net/http ServeMux handler doing the same work 608.1, binding path and query 1403, binding a JSON body 3063"
+    aria-label="Nanoseconds per operation: static route lookup 75.3, param lookup 92.4, a bare framework route 786.0, a hand-written net/http ServeMux handler doing the same work 628.4, binding path and query 1661, binding a JSON body 3406"
   >
     <!-- gridlines at a quarter of the scale -->
     <g stroke="#272320" stroke-width="1">
@@ -123,7 +123,7 @@ onMounted(() => {
         </text>
       </g>
       <text :x="PAD_L" y="196" fill="#6A645B">0</text>
-      <text :x="PAD_L + PLOT_W" y="196" text-anchor="end" fill="#6A645B">3063 ns</text>
+      <text :x="PAD_L + PLOT_W" y="196" text-anchor="end" fill="#6A645B">3406 ns</text>
     </g>
   </svg>
 </template>
