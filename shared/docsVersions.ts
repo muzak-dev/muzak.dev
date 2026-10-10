@@ -34,8 +34,8 @@ export interface DocsVersion {
  * this list and the directories under content/docs are kept in step.
  */
 export const DOCS_VERSIONS: DocsVersion[] = [
-  { version: '0.2.9', label: 'Latest' },
-  { version: '0.2.8' },
+  { version: '0.3.0', label: 'Latest' },
+  { version: '0.2.9' },
 ]
 
 /** The version an unversioned `/docs/...` request is sent to. */
